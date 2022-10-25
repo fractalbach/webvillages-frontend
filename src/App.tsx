@@ -18,6 +18,7 @@ export default function App() {
       <UserCard />
       <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
+      <NumberDisplayer count={count} />
     </div>
   );
 }
@@ -27,6 +28,12 @@ function MyButton({count, onClick}) {
     <button onClick={onClick}>
       You've Pressed Me {count} Times!
     </button>
+  );
+}
+
+function NumberDisplayer({count}) {
+  return (
+    <p>Hello, You have pressed a button {count} times on this page!</p>
   );
 }
 
