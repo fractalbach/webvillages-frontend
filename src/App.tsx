@@ -1,10 +1,11 @@
 import './App.css'
+import { useState } from 'react';
 
 let user_1 = {
   id: 123,
   name: "Chris",
   data: "a23bd3sdf",
-}
+};
 
 export default function App() {
   return (
@@ -12,8 +13,9 @@ export default function App() {
       <h1>Welcome to WebVillages!</h1>
       <UserCard />
       <MyButton />
+      <MyButton />
     </div>
-  )
+  );
 }
 
 function UserCard() {
@@ -23,15 +25,32 @@ function UserCard() {
       <div className='usercard_name'>{user.name}</div>
       <div className='usercard_body'>{user.data}</div>
     </div>
-  )
+  );
 }
 
 
 function MyButton() {
+  
+  const [count, setCount] = useState(0);
+  
   function handleClick() {
-    alert('hi');
+    setCount(count + 1);
   }
+  
   return (
-    <button onClick={handleClick}>I'm a button</button>
+    <button onClick={handleClick}>
+      You've Pressed Me {count} Times!
+    </button>
+  );
+}
+
+function AboutPage() {
+  return (
+    <>
+      <h1>About WebVillages</h1>
+      <p>WebVillages is a website where you can customize your own 
+      homepage with a house, join a village with others, and explore
+      new villages!</p>
+    </>
   );
 }
