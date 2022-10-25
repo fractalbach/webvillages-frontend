@@ -8,13 +8,25 @@ let user_1 = {
 };
 
 export default function App() {
+  const [count, setCount] = useState(0);
+  function handleClick() {
+    setCount(count + 1);
+  }
   return (
     <div>
       <h1>Welcome to WebVillages!</h1>
       <UserCard />
-      <MyButton />
-      <MyButton />
+      <MyButton count={count} onClick={handleClick} />
+      <MyButton count={count} onClick={handleClick} />
     </div>
+  );
+}
+
+function MyButton({count, onClick}) {
+  return (
+    <button onClick={onClick}>
+      You've Pressed Me {count} Times!
+    </button>
   );
 }
 
@@ -25,22 +37,6 @@ function UserCard() {
       <div className='usercard_name'>{user.name}</div>
       <div className='usercard_body'>{user.data}</div>
     </div>
-  );
-}
-
-
-function MyButton() {
-  
-  const [count, setCount] = useState(0);
-  
-  function handleClick() {
-    setCount(count + 1);
-  }
-  
-  return (
-    <button onClick={handleClick}>
-      You've Pressed Me {count} Times!
-    </button>
   );
 }
 
