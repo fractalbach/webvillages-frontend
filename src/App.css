@@ -1,12 +1,30 @@
-body {
-  padding: 1% 0;
-/*   vertical-align: center; */
-/*   line-height: 100vh; */
+html, body {
+  padding: 0%;
 }
 
-.usercard {
-  border: 1px solid #777;
-  background-color: #bbb;
-  max-width: 10em;
-  margin: auto;
+.thread {
+  padding: 1%;
+  margin: 1%;
+  border: 1px solid #d3d7cf;
+  background-color: #eeeeec;
+}
+
+.thread > details > summary {
+  padding: 1%;
+  details: 0.5em;
+  background-color: #e5e5e5;
+  border: 2px outset black;
+  cursor: pointer
+  user-select: none;
+}
+
+.thread > details[open] > summary {
+  border: 2px inset black;
+}
+
+.comment {
+  margin: 1%;
+  padding: 1%;
+  border: 1px solid #d3d7cf;
+  background-color: #cff5ff;
 }

@@ -71,10 +71,10 @@ function VillageForum() {
     threads.push( <Thread thread_data={x} key={x.id} /> );
   });
   return (
-    <section>
-    <h1>Village Forum</h1>
-      {threads}
-    </section>
+    <div className="forum">
+      <h1 className="forum_heading">Village Forum</h1>
+      <div className="forum_body">{threads}</div>
+    </div>
   );
 }
 
