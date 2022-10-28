@@ -8,7 +8,6 @@ export default function App() {
   }
   return (
     <div>
-      <h1>Welcome to WebVillages!</h1>
       <VillageForum />
     </div>
   );
@@ -51,16 +50,16 @@ const EXAMPLE_FORUM_DATA = {
   ],
   comments_by_thread: {
     "007": [
-      {user: "user5", time: 1666796672, message: "Just making a cool thread, post anything!"},
-      {user: "somebody1", time: 1666969472, message: "I am making a response. Hi."},
+      {id: "230", user: "user5", time: 1666796672, message: "Just making a cool thread, post anything!"},
+      {id: "239", user: "somebody1", time: 1666969472, message: "I am making a response. Hi."},
     ],
     "111": [
-      {user: "iamyou", time: 1666793072, message: "Welcome to the village forums!"},
+      {id: "238", user: "iamyou", time: 1666793072, message: "Welcome to the village forums!"},
     ],
     "123": [
-      {user: "iamyou", time: 1666796672, message: "I am you. If you know you, then you know me."},
-      {user: "user5", time: 1666796672, message: "I am user5, and i have 5 fingers on each hand"},
-      {user: "lolerz", time: 1666796672, message: "Please post intros! I am lolerz, I lol in free time."},
+      {id: "237", user: "iamyou", time: 1666796672, message: "I am you. If you know you, then you know me."},
+      {id: "236", user: "user5", time: 1666796672, message: "I am user5, and i have 5 fingers on each hand"},
+      {id: "235", user: "lolerz", time: 1666796672, message: "Please post intros! I am lolerz, I lol in free time."},
     ],
   }
 }
@@ -69,12 +68,7 @@ function VillageForum() {
   const data = EXAMPLE_FORUM_DATA;
   const threads = [];
   data.threads.forEach((x) => {
-    threads.push(
-      <Thread 
-        thread_data={x}
-        key={x.id}
-      />
-    );
+    threads.push( <Thread thread_data={x} key={x.id} /> );
   });
   return (
     <section>
@@ -85,11 +79,30 @@ function VillageForum() {
 }
 
 function Thread({thread_data}) {
+  const comments = [];
+  const comment_data = EXAMPLE_FORUM_DATA.comments_by_thread[thread_data.id];
+  comment_data.forEach((x) => {
+    comments.push( <Comment key={x.id} comment_data={x} /> );
+  });
   return (
     <div className="thread">
-      <div className="thread_title">{thread_data.title}</div>
-      <div className='thread_time'>{thread_data.start_time}</div>
-      <div className='thread_counter'>{thread_data.comment_count}</div>
+      <h2 className="thread_title">Thread: {thread_data.title}</h2>
+      <div className="thread_author">Author: {thread_data.user}</div>
+      <div className='thread_time'>Time: {thread_data.start_time}</div>
+      <details>
+        <summary>View {thread_data.comment_count} Comments</summary>
+        {comments}
+      </details>
+    </div>
+  );
+}
+
+function Comment({comment_data}) {
+  return (
+    <div className="comment">
+      <div className="comment_author">Author: {comment_data.user}</div>
+      <div className="comment_time">Time: {comment_data.time}</div>
+      <div className="comment_content">{comment_data.message}</div>
     </div>
   );
 }
